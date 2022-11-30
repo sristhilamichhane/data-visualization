@@ -1,53 +1,55 @@
 import React from "react";
 import {
-  Area,
-  AreaChart,
+  Bar,
+  BarChart,
   CartesianGrid,
   Legend,
+  ReferenceLine,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-
 import data from "../records.json";
 
 data.map((data) => {
   return <div className="box" key={data.name}></div>;
 });
 
-const AreaCharts = () => {
+const BarCharts = () => {
   return (
     <div>
-      <AreaChart width={600} height={300} data={data}>
-        <Area
+      <BarChart width={500} height={300} data={data} stackOffset="sign">
+        <ReferenceLine y={0} stroke="#000" />
+        <Bar
           type="monotone"
           dataKey="react"
-          stroke="#2196f3"
+          stroke="pink"
           strokeWidth={3}
           fill="gray"
         />
-        <Area
+        <Bar
           type="monotone"
-          dataKey="angular"
-          stroke="red"
+          dataKey="vue"
+          stroke="blue"
           strokeWidth={3}
           fill="yellow"
         />
-        <Area
+        <Bar
           type="monotone"
-          dataKey="vue"
-          stroke="brown"
+          dataKey="angular"
+          stroke="green"
           strokeWidth={3}
-          fill="purple"
+          fill="red"
         />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-      </AreaChart>
+      </BarChart>
     </div>
   );
 };
 
-export default AreaCharts;
+export default BarCharts;
